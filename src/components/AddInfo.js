@@ -34,12 +34,12 @@ class AddInfo extends React.Component {
     render() { 
         return (
             <div>
-                <h4>IMDb rating:{this.state.imdbRating}</h4>
-                <h4>cast: {this.state.cast}</h4>
-                <h4>awards: {this.state.awards}</h4>
-                <h4>director: {this.state.director}</h4>
-                <h4>genre: {this.state.genre}</h4>
-                <h4>plot: {this.state.plot}</h4>
+                <p><b>IMDb rating:</b> {this.state.imdbRating}</p>
+                <p><b>cast:</b> {this.state.cast}</p>
+                <p><b>awards:</b> {this.state.awards}</p>
+                <p><b>director:</b> {this.state.director}</p>
+                <p><b>genre:</b> {this.state.genre}</p>
+                <p><b>plot:</b> {this.state.plot}</p>
             </div>
         );
     }

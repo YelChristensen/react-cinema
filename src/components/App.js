@@ -13,9 +13,14 @@ class App extends React.Component {
       searchTerm: 'Batman',
       filmArr: [],
       backgroundImg:'',
-      film: ''
+      film: '',
+      poster: '',
+      title: '',
+      year: '',
+      type: '',
+      imdbID: ''
     }
-    this.reciveFilm=this.receiveFilm.bind(this);
+    
     this.fetchMovies=this.fetchMovies.bind(this);
     this.receiveSearch=this.receiveSearch.bind(this)
   }
@@ -33,14 +38,7 @@ class App extends React.Component {
     }))
   }
 
-    receiveFilm(film){
-      this.setState({
-        poster: film.Poster,
-        title: film.Title,
-        year: film.Year,
-        type: film.Type
-      })
-    }
+ 
 
     receiveSearch(text){
       this.setState({
@@ -57,7 +55,7 @@ class App extends React.Component {
           <Search receiver={this.receiveSearch}/>
         </header>
         <main>
-          <Films filmArr={this.state.filmArr} receiver={this.receiveFilm}/>
+          <Films filmArr={this.state.filmArr} />
         </main>
         <button>load more...</button>
         <section><h4>your favourites</h4></section>
