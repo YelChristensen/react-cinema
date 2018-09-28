@@ -7,12 +7,17 @@ class Film extends React.Component {
         super();
         
         this.handleClick=this.handleClick.bind(this);
+        // this.favHandleClick=this.favHandleClick.bind(this)
     }
 
     handleClick(event){
         this.props.makeFilmActive(this.props.film)
         
     }
+
+    // favHandleClick(event){
+    //     this.props.addToFav(this.props.film)
+    // }
 
 
 render() { 
@@ -22,6 +27,7 @@ render() {
             <img src={this.props.film.Poster} />
             <h2>{this.props.film.Title}</h2>
             <h3>{this.props.film.Year}</h3>
+            {/* <button onFavClick={this.favHandleClick} type="checkbox" name="favourite"><i class="fav-button fas fa-heart"/></button> */}
             <p><b>type:</b> {this.props.film.Type}</p>
 
             {this.props.active ?  <AddInfo imdbID={this.props.film.imdbID}/> : null}
