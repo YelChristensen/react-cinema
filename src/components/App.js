@@ -24,6 +24,7 @@ class App extends React.Component {
     this.fetchMovies = this.fetchMovies.bind(this);
     this.receiveSearch = this.receiveSearch.bind(this);
     this.handleClick = this.handleClick.bind(this);
+    this.receiveFavourite=this.receiveFavourite.bind(this)
   }
 
   componentDidMount() {
@@ -56,6 +57,13 @@ class App extends React.Component {
     );
   }
 
+  receiveFavourite(film){
+    this.setState({
+      poster: film.Poster,
+      title: film.Title
+    })
+  }
+
   render() {
     return (
       <div>
@@ -65,7 +73,7 @@ class App extends React.Component {
           <Search receiver={this.receiveSearch} />
         </header>
         <main>
-          <Films filmArr={this.state.filmArr} />
+          <Films filmArr={this.state.filmArr} receiveFav={this.receiveFavourite} />
         </main>
         <button onClick={this.handleClick}>load more...</button>
         <section>

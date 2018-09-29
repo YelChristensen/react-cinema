@@ -13,3 +13,11 @@ h1 {
     font-weight: 200;
     margin: 0px;
   }
+
+  .fav-button{
+      color: midnightblue;
+  }
+
+  .active{
+      color:red;
+  }

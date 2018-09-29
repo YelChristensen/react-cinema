@@ -23,7 +23,7 @@ class Films extends React.Component {
         {this.props.filmArr.map(film => (
           <Film
             key={film.imdbID}
-            makeFilmActive={this.receiveFilm}
+            makeFilmActive={this.receiveFilm} addToFav={this.props.receiveFav}
             film={film}
             active={film.imdbID === this.state.activeFilmID}
           />
