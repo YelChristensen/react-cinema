@@ -26,19 +26,19 @@ class Film extends React.Component {
   }
 
   render() {
-    const classes = cx(`fav-button `, {
+    const classes = cx(`film--btn `, {
       active: this.state.favourite
     });
 
     return (
-      <div onClick={this.handleClick}>
-        <img src={this.props.film.Poster} />
-        <h2>{this.props.film.Title}</h2>
-        <h3>{this.props.film.Year}</h3>
-        <button className={classes} onClick={this.favHandleClick} type="checkbox" name="favourite">
+      <div className='film' onClick={this.handleClick}>
+        <img className='film--poster' src={this.props.film.Poster} />
+        <h3 className='film--title'>{this.props.film.Title}</h3>
+        <h4 className='film--year'>{this.props.film.Year}</h4>
+        <p className={classes} onClick={this.favHandleClick} type="checkbox" name="favourite">
           <i className='fas fa-heart' />
-        </button>
-        <p>
+        </p>
+        <p className='film--type'>
           <b>type:</b> {this.props.film.Type}
         </p>
 

@@ -33,7 +33,7 @@ class AddInfo extends React.Component {
 
     render() { 
         return (
-            <div>
+            <div className='film--addInfo'>
                 <p><b>IMDb rating:</b> {this.state.imdbRating}</p>
                 <p><b>cast:</b> {this.state.cast}</p>
                 <p><b>awards:</b> {this.state.awards}</p>

@@ -25,9 +25,9 @@ class Favourite extends React.Component {
  
   render() {
     return (
-      <div>
+      <div className='fav--film'>
         <img className="fav--img" src={this.props.favFilm.Poster} />
-        <p>{this.props.favFilm.Title}</p>
+        <p className='fav--title'>{this.props.favFilm.Title}</p>
         {/* <i onClick={this.handleClick} className="fas fa-arrow-alt-circle-up"></i> */}
         {/* <i onClick={this.handleDeleteClick} className="fas fa-minus-circle"></i>
         <i onClick={this.handleDownClick} className="fas fa-arrow-alt-circle-down"></i> */}

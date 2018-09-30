@@ -14,7 +14,7 @@ class Favourites extends React.Component {
 
   render() {
     return (
-      <div className='favourites'>
+      <div className='favourites--films'>
         {this.props.favFilmArr.map(favFilm=>(
             <Favourite key={favFilm.Title} moveUp={this.props.moveUp} favFilm={favFilm} />
         ))}     

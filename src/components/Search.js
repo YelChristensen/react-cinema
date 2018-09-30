@@ -31,7 +31,7 @@ class Search extends React.Component {
 
   render() {
     return (
-      <form className="search" onSubmit={this.handleSubmit}>
+      <form className="header--search" onSubmit={this.handleSubmit}>
         <label className="search--label">search for a movie:</label>
         <input
           onChange={this.handleChange}

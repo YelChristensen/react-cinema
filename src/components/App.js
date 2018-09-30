@@ -112,20 +112,23 @@ clearAllFav(){
 
   render() {
     return (
-      <div>
+      <div className='app'>
         <header>
-          <img className="logo" src="video-camera.svg" />
-          <h1>reel find</h1>
+          <div className='header--logoNname'>
+          <img className="header--logo" src="whitecamera.svg" />
+          
+          <h1 className='header--name'>reel find</h1>
+          </div>
           <Search receiver={this.receiveSearch} />
         </header>
         <main>
           <Films filmArr={this.state.filmArr} receiveFav={this.receiveFavourite} />
         </main>
-        <button onClick={this.handleClick}>load more...</button>
-        <section>
-          <h4>your favourites</h4>
+        <button className='loadMore' onClick={this.handleClick}>load more...</button>
+        <section className='favourites'>
+          <h4 className='favourites--title'>your favourites:</h4>
           <Favourites favFilmArr={this.state.favFilmArr} moveUp={this.receiveMoveUp}/>
-          <button onClick={this.handleClearClick}>clear favourites</button>
+          <button className='favourites--clearAll' onClick={this.handleClearClick}>clear favourites</button>
         </section>
       </div>
     );
