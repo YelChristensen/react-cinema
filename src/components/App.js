@@ -3,6 +3,7 @@
 import React from "react";
 import Films from "./Films.js";
 import Search from "./Search";
+import Favourites from './Favourites'
 
 class App extends React.Component {
   constructor() {
@@ -18,17 +19,25 @@ class App extends React.Component {
       title: "",
       year: "",
       type: "",
-      imdbID: ""
+      imdbID: "",
+      favFilmArr: []
     };
 
     this.fetchMovies = this.fetchMovies.bind(this);
     this.receiveSearch = this.receiveSearch.bind(this);
     this.handleClick = this.handleClick.bind(this);
-    this.receiveFavourite=this.receiveFavourite.bind(this)
+    this.receiveFavourite=this.receiveFavourite.bind(this);
+    this.saveToLocalStorage = this.saveToLocalStorage.bind(this);
+    this.recallFavourites=this.recallFavourites.bind(this);
+    this.handleClearClick=this.handleClearClick.bind(this);
+    this.clearAllFav=this.clearAllFav.bind(this)
+  
   }
 
   componentDidMount() {
     this.fetchMovies();
+    if(localStorage.getItem('favourites') !== null){
+    this.recallFavourites()};
   }
 
   fetchMovies() {
@@ -59,10 +68,34 @@ class App extends React.Component {
 
   receiveFavourite(film){
     this.setState({
-      poster: film.Poster,
-      title: film.Title
-    })
+      favFilmArr: this.state.favFilmArr.concat(film)
+    }, () => this.saveToLocalStorage())
   }
+
+  
+
+saveToLocalStorage(){
+    let favJson = JSON.stringify(this.state.favFilmArr)
+    localStorage.setItem('favourites', favJson)
+}
+
+ recallFavourites(){
+   let retrievedFav = localStorage.getItem('favourites');
+     this.setState({
+       favFilmArr: JSON.parse(retrievedFav)
+     })
+   
+ }
+
+ handleClearClick(){
+   this.setState({
+     favFilmArr: []
+   }, ()=> this.clearAllFav())
+}
+
+clearAllFav(){
+  localStorage.removeItem('favourites');
+}
 
   render() {
     return (
@@ -78,6 +111,8 @@ class App extends React.Component {
         <button onClick={this.handleClick}>load more...</button>
         <section>
           <h4>your favourites</h4>
+          <Favourites favFilmArr={this.state.favFilmArr} />
+          <button onClick={this.handleClearClick}>clear favourites</button>
         </section>
       </div>
     );
