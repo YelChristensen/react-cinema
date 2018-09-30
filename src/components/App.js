@@ -30,7 +30,10 @@ class App extends React.Component {
     this.saveToLocalStorage = this.saveToLocalStorage.bind(this);
     this.recallFavourites=this.recallFavourites.bind(this);
     this.handleClearClick=this.handleClearClick.bind(this);
-    this.clearAllFav=this.clearAllFav.bind(this)
+    this.clearAllFav=this.clearAllFav.bind(this);
+    // this.receiveMoveUp=this.receiveMoveUp.bind(this);
+    // this.receiveDelete=this.receiveDelete.bind(this);
+    // this.receeiveMoveDown=this.receiveMoveDown.bind(this);
   
   }
 
@@ -71,7 +74,6 @@ class App extends React.Component {
       favFilmArr: this.state.favFilmArr.concat(film)
     }, () => this.saveToLocalStorage())
   }
-
   
 
 saveToLocalStorage(){
@@ -97,6 +99,17 @@ clearAllFav(){
   localStorage.removeItem('favourites');
 }
 
+// receiveMoveUp(favFilm){
+//   const arrCopy = [...this.state.favFilmArr];
+//   const index = arrCopy.indexOf(favFilm);
+//   const removedArrItem = arrCopy.splice(index, 1)
+//   this.setState({
+//     favFilmArr: arrCopy.splice(index-1, 0, removedArrItem[0])
+//   });
+//   this.saveToLocalStorage();
+//   this.recallFavourites();
+// }
+
   render() {
     return (
       <div>
@@ -111,7 +124,7 @@ clearAllFav(){
         <button onClick={this.handleClick}>load more...</button>
         <section>
           <h4>your favourites</h4>
-          <Favourites favFilmArr={this.state.favFilmArr} />
+          <Favourites favFilmArr={this.state.favFilmArr} moveUp={this.receiveMoveUp}/>
           <button onClick={this.handleClearClick}>clear favourites</button>
         </section>
       </div>
