@@ -51,7 +51,6 @@ header{
     align-items: center;
     align-self: stretch;
     flex-wrap: wrap;
-    height: 8vh;
     margin-top: 1em;
     background-color: midnightblue
 }
@@ -64,7 +63,7 @@ header{
 }
 
 .header--logo{
-    max-width: 80px;
+    max-width: 60px;
     margin-right: 1em;
 }
 
@@ -78,13 +77,18 @@ h1 {
     font-size: 32px;
   }
 
+  form{
+      margin-bottom: .1em;
+  }
+
   .search--label{
-      margin-right: 1em;
+      margin-right: .2em;
   }
 
   .search--input{
       border-radius: 8px;
       border: 2px solid white;
+      margin-right: .2em;
   }
 
 .search--btn{
@@ -112,7 +116,7 @@ main {
       max-width: 100%;
       object-fit: contain;
       justify-self: center;
-      margin: .5em;
+      padding: 1em;
   }
 
   .film--title{
@@ -134,6 +138,7 @@ main {
 .film--addInfo{
     grid-area: addInfo;
     max-width: 355px;
+    padding: 1em;
 }
 
 .film{
@@ -144,15 +149,17 @@ main {
         "poster title title"
         "poster year btn"
         "poster type type"
-        "poster addInfo addInfo ";
+        "poster null null"
+        "addInfo addInfo addInfo ";
     margin-top: 1em;
     grid-column-gap: 1em;
-    background-color: midnightblue
+    background-color: midnightblue;
 }
 
 .films{
     max-width: 800px;
     margin-top: 1.5em;
+    justify-content: center;
 }
 
 .loadMore, .favourites--clearAll{
@@ -181,6 +188,7 @@ main {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+    align-items: flex-start;
 }
 
 .fav--film{
@@ -188,16 +196,25 @@ main {
     margin: .5em;
     display: flex;
     flex-direction: column;
-
 }
 
 .fav--img{
-    max-width: 250px;
+    max-width: 30vw;
 }
 
 .fav--title{
-    max-width: 250px;
+    max-width: 30vw;
     text-align: center;
+    font-size: .5em;
+}
+
+.fav--controls{
+    display: flex;
+    justify-content: flex-end;
+}
+
+.fas{
+    padding: .1em;
 }
 
 @media(min-width: 768px){

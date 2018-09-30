@@ -13,13 +13,6 @@ class App extends React.Component {
       searchTerm: "Batman",
       pageNo: 1,
       filmArr: [],
-      backgroundImg: "",
-      film: "",
-      poster: "",
-      title: "",
-      year: "",
-      type: "",
-      imdbID: "",
       favFilmArr: []
     };
 
@@ -31,9 +24,9 @@ class App extends React.Component {
     this.recallFavourites=this.recallFavourites.bind(this);
     this.handleClearClick=this.handleClearClick.bind(this);
     this.clearAllFav=this.clearAllFav.bind(this);
-    // this.receiveMoveUp=this.receiveMoveUp.bind(this);
-    // this.receiveDelete=this.receiveDelete.bind(this);
-    // this.receeiveMoveDown=this.receiveMoveDown.bind(this);
+    this.receiveMoveUp=this.receiveMoveUp.bind(this);
+    this.receiveDelete=this.receiveDelete.bind(this);
+    this.receiveMoveDown=this.receiveMoveDown.bind(this)
   
   }
 
@@ -49,7 +42,6 @@ class App extends React.Component {
       .then(body =>
         this.setState({
           filmArr: this.state.pageNo===1 ? body.Search : this.state.filmArr.concat(body.Search),
-          backgroundImg: this.state.pageNo===1 ? body.Search[0].Poster : this.backgroundImg
         }),
       );
   }
@@ -99,16 +91,40 @@ clearAllFav(){
   localStorage.removeItem('favourites');
 }
 
-// receiveMoveUp(favFilm){
-//   const arrCopy = [...this.state.favFilmArr];
-//   const index = arrCopy.indexOf(favFilm);
-//   const removedArrItem = arrCopy.splice(index, 1)
-//   this.setState({
-//     favFilmArr: arrCopy.splice(index-1, 0, removedArrItem[0])
-//   });
-//   this.saveToLocalStorage();
-//   this.recallFavourites();
-// }
+receiveMoveUp(favFilm){
+  this.clearAllFav();
+  const arrCopy = [...this.state.favFilmArr];
+  const index = arrCopy.indexOf(favFilm);
+  const removedArrItem = arrCopy.splice(index, 1)
+  this.setState({
+    favFilmArr: arrCopy.splice(index-1, 0, removedArrItem[0])
+  });
+  this.saveToLocalStorage();
+  this.recallFavourites();
+}
+
+receiveMoveDown(favFilm){
+  this.clearAllFav();
+  const arrCopy = [...this.state.favFilmArr];
+  const index = arrCopy.indexOf(favFilm);
+  const removedArrItem = arrCopy.splice(index, 1)
+  this.setState({
+    favFilmArr: arrCopy.splice(index+1, 0, removedArrItem[0])
+  });
+  this.saveToLocalStorage();
+  this.recallFavourites();
+}
+
+receiveDelete(favFilm){
+  this.clearAllFav();
+  const arrCopy = [...this.state.favFilmArr];
+  const index = arrCopy.indexOf(favFilm);
+  this.setState({
+    favFilmArr: arrCopy.splice(index,1)
+  });
+  this.saveToLocalStorage();
+  this.recallFavourites();
+}
 
   render() {
     return (
@@ -127,7 +143,7 @@ clearAllFav(){
         <button className='loadMore' onClick={this.handleClick}>load more...</button>
         <section className='favourites'>
           <h4 className='favourites--title'>your favourites:</h4>
-          <Favourites favFilmArr={this.state.favFilmArr} moveUp={this.receiveMoveUp}/>
+          <Favourites favFilmArr={this.state.favFilmArr} moveUp={this.receiveMoveUp} moveDown={this.receiveMoveDown} delete={this.receiveDelete}/>
           <button className='favourites--clearAll' onClick={this.handleClearClick}>clear favourites</button>
         </section>
       </div>
